@@ -60,6 +60,9 @@ public class TpaCommand extends AbstractCommand {
         } else {
             if (CoreConfig.autoAcceptAllTpa) {
                 TpaAcceptCommand.executeAccept(context, from, into);
+                into.sendMessage(Text.literal("§a玩家 " + from.getName().getString() + " 请求传送至你"));
+                into.sendMessage(Text.literal("§a由于服务器设置，已自动接受传送请求"));
+                return 1;
             }
             context.getSource().sendMessage(Text.literal("§a已发送传送请求至" + into.getName().getString()));
             into.sendMessage(Text.literal("§a玩家 " + from.getName().getString() + " 请求传送至你"));
