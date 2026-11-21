@@ -58,6 +58,9 @@ public class TpaCommand extends AbstractCommand {
             context.getSource().sendMessage(Text.literal("§c你已有一个未处理的传送请求，请等待对方处理，当前的传送目标：" + (target == null ? "null" : target.getName().getString())));
             context.getSource().sendMessage(Text.literal("§c请输入 /tpaCancel 以取消传送"));
         } else {
+            if (CoreConfig.autoAcceptAllTpa) {
+                TpaAcceptCommand.executeAccept(context, from, into);
+            }
             context.getSource().sendMessage(Text.literal("§a已发送传送请求至" + into.getName().getString()));
             into.sendMessage(Text.literal("§a玩家 " + from.getName().getString() + " 请求传送至你"));
             into.sendMessage(Text.literal("§a请输入 /tpaAccept 以接受传送"));

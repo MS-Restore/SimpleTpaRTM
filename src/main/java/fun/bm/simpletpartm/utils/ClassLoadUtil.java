@@ -22,7 +22,7 @@ public class ClassLoadUtil {
         Enumeration<URL> dirs;
 
         try {
-            dirs = MinecraftServer.class.getClassLoader().getResources(packageDirName);
+            dirs = ClassLoadUtil.class.getClassLoader().getResources(packageDirName);
             while (dirs.hasMoreElements()) {
                 URL url = dirs.nextElement();
                 String protocol = url.getProtocol();

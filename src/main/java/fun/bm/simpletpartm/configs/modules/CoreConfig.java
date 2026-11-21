@@ -18,6 +18,9 @@ public class CoreConfig implements IConfigModule {
     @ConfigInfo(name = "cleanup-interval-ticks", comments = "How often to clean up teleport data (in ticks, number of ticks between cleanups)")
     public static int cleanupIntervalTicks = 20 * 60 * 15; // 15 minutes
 
+    @ConfigInfo(name = "auto-accept-all-tpa", comments = "Auto accept all tpa requests")
+    public static boolean autoAcceptAllTpa = false;
+
     public static int getCooldownTime() {
         return enableCooldown ? cooldownTime : 0;
     }
