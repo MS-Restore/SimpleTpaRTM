@@ -4,8 +4,11 @@ import com.electronwill.nightconfig.core.UnmodifiableConfig;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.mojang.logging.LogUtils;
 import fun.bm.simpletpartm.configs.flags.*;
+import fun.bm.simpletpartm.configs.modules.BackConfig;
+import fun.bm.simpletpartm.configs.modules.CoreConfig;
+import fun.bm.simpletpartm.configs.modules.TpHereConfig;
+import fun.bm.simpletpartm.configs.modules.TpaConfig;
 import fun.bm.simpletpartm.enums.EnumConfigCategory;
-import fun.bm.simpletpartm.utils.ClassLoadUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -177,12 +180,12 @@ public class ConfigsInstance {
     /**
      * Instantiate all configuration modules
      */
-    private void instanceAllModule() throws NoSuchMethodException, InvocationTargetException,
-            InstantiationException, IllegalAccessException {
-        for (Class<?> clazz : ClassLoadUtil.getClasses(pack)) {
-            if (IConfigModule.class.isAssignableFrom(clazz)) {
-                allInstanced.put((IConfigModule) clazz.getConstructor().newInstance(), null);
-            }
+    private void instanceAllModule() {
+        if (allInstanced.isEmpty()) {
+            allInstanced.put(new BackConfig(), null);
+            allInstanced.put(new CoreConfig(), null);
+            allInstanced.put(new TpaConfig(), null);
+            allInstanced.put(new TpHereConfig(), null);
         }
     }
 
